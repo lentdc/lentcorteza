@@ -112,10 +112,13 @@
     .skill-icon { width:44px; height:44px; background:var(--bg-soft); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; border:1px solid rgba(247,37,133,0.18); flex-shrink:0; }
     .skill-card-title { font-family:var(--font-display); font-size:1.05rem; font-weight:700; color:var(--white); line-height:1.2; }
     .skill-card-subtitle { font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--pink); margin-top:0.1rem; }
-    .skill-list { list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
-    .skill-list li { display:flex; align-items:flex-start; gap:0.6rem; font-size:0.9rem; color:var(--muted); line-height:1.5; }
-    .skill-list li::before { content:'✦'; color:var(--pink); font-size:0.55rem; margin-top:0.42rem; flex-shrink:0; }
-    .skill-list li strong { color:var(--blush); font-weight:600; }
+    .skill-list { list-style:none; display:flex; flex-direction:column; gap:0; }
+    .skill-list li { display:grid; grid-template-columns:12px 1fr; align-items:start; gap:0 0.5rem; padding:0.6rem 0; border-bottom:1px solid rgba(247,37,133,0.07); }
+    .skill-list li:last-child { border-bottom:none; padding-bottom:0; }
+    .skill-list li > span:first-child { display:flex; align-items:flex-start; padding-top:0.22rem; color:var(--pink); font-size:0.5rem; }
+    .skill-list li > span:first-child::before { content:'✦'; }
+    .sk-label { font-size:0.88rem; font-weight:600; color:var(--blush); line-height:1.4; display:block; }
+    .sk-desc  { font-size:0.78rem; color:var(--muted); line-height:1.4; margin-top:0.15rem; display:block; }
 
     /* TOOLS CARD */
     .tools-card { grid-column:span 2; background:var(--bg-card); border:1px solid rgba(247,37,133,0.12); border-radius:20px; padding:1.8rem; }
@@ -308,12 +311,12 @@
           <div><div class="skill-card-title">Core Skills</div><div class="skill-card-subtitle">What I do best</div></div>
         </div>
         <ul class="skill-list">
-          <li><strong>Customer Support & Issue Resolution</strong> — inquiries, complaints, and service requests handled with empathy</li>
-          <li><strong>Email & Inbox Management</strong> — organized, responsive, zero-clutter communication</li>
-          <li><strong>Lead Generation</strong> — research, outreach, and database management</li>
-          <li><strong>Executive & Administrative Support</strong> — scheduling, documentation, and daily operations</li>
-          <li><strong>Recruitment Coordination</strong> — sourcing, screening, and scheduling candidates</li>
-          <li><strong>Technical Troubleshooting (Tier 1)</strong> — first-level support and ticket documentation</li>
+          <li><span></span><span><span class="sk-label">Customer Support & Issue Resolution</span><span class="sk-desc">Inquiries, complaints &amp; service requests handled with empathy</span></span></li>
+          <li><span></span><span><span class="sk-label">Email &amp; Inbox Management</span><span class="sk-desc">Organized, responsive, zero-clutter communication</span></span></li>
+          <li><span></span><span><span class="sk-label">Lead Generation</span><span class="sk-desc">Research, outreach &amp; database management</span></span></li>
+          <li><span></span><span><span class="sk-label">Executive &amp; Administrative Support</span><span class="sk-desc">Scheduling, documentation &amp; daily operations</span></span></li>
+          <li><span></span><span><span class="sk-label">Recruitment Coordination</span><span class="sk-desc">Sourcing, screening &amp; scheduling candidates</span></span></li>
+          <li><span></span><span><span class="sk-label">Technical Troubleshooting (Tier 1)</span><span class="sk-desc">First-level support &amp; ticket documentation</span></span></li>
         </ul>
       </div>
 
@@ -323,12 +326,12 @@
           <div><div class="skill-card-title">Content & Creative</div><div class="skill-card-subtitle">Creative outputs I deliver</div></div>
         </div>
         <ul class="skill-list">
-          <li><strong>Email Marketing Campaigns</strong> — written, designed, and scheduled to convert</li>
-          <li><strong>Social Media Content</strong> — created and scheduled for brand visibility</li>
-          <li><strong>Graphic & Visual Design</strong> — branded materials using Canva and AI tools</li>
-          <li><strong>Website Building</strong> — landing pages via Wix and AI-assisted tools</li>
-          <li><strong>Video Editing</strong> — Premiere Pro, Filmora, CapCut, and AI-assisted tools</li>
-          <li><strong>AI Image & Video Generation</strong> — professional visuals created with AI</li>
+          <li><span></span><span><span class="sk-label">Email Marketing Campaigns</span><span class="sk-desc">Written, designed &amp; scheduled to convert</span></span></li>
+          <li><span></span><span><span class="sk-label">Social Media Content</span><span class="sk-desc">Created &amp; scheduled for brand visibility</span></span></li>
+          <li><span></span><span><span class="sk-label">Graphic &amp; Visual Design</span><span class="sk-desc">Branded materials using Canva &amp; AI tools</span></span></li>
+          <li><span></span><span><span class="sk-label">Website Building</span><span class="sk-desc">Landing pages via Wix &amp; AI-assisted tools</span></span></li>
+          <li><span></span><span><span class="sk-label">Video Editing</span><span class="sk-desc">Premiere Pro, Filmora, CapCut &amp; AI tools</span></span></li>
+          <li><span></span><span><span class="sk-label">AI Image &amp; Video Generation</span><span class="sk-desc">Professional visuals created with AI</span></span></li>
         </ul>
       </div>
 
@@ -338,12 +341,12 @@
           <div><div class="skill-card-title">Professional Strengths</div><div class="skill-card-subtitle">How I work</div></div>
         </div>
         <ul class="skill-list">
-          <li><strong>C1 English Proficiency</strong> — fluent, experienced with U.S. clients</li>
-          <li><strong>Reliable & Self-Motivated</strong> — independent with minimal supervision</li>
-          <li><strong>Strong Attention to Detail</strong> — accurate, confidential, consistent</li>
-          <li><strong>Quick Learner</strong> — adapts fast to new tools and workflows</li>
-          <li><strong>Open to Feedback</strong> — growth-oriented and improvement-driven</li>
-          <li><strong>Stable WFH Setup</strong> — reliable internet with backup connectivity</li>
+          <li><span></span><span><span class="sk-label">C1 English Proficiency</span><span class="sk-desc">Fluent, experienced with U.S. clients</span></span></li>
+          <li><span></span><span><span class="sk-label">Reliable &amp; Self-Motivated</span><span class="sk-desc">Independent with minimal supervision</span></span></li>
+          <li><span></span><span><span class="sk-label">Strong Attention to Detail</span><span class="sk-desc">Accurate, confidential &amp; consistent</span></span></li>
+          <li><span></span><span><span class="sk-label">Quick Learner</span><span class="sk-desc">Adapts fast to new tools &amp; workflows</span></span></li>
+          <li><span></span><span><span class="sk-label">Open to Feedback</span><span class="sk-desc">Growth-oriented &amp; improvement-driven</span></span></li>
+          <li><span></span><span><span class="sk-label">Stable WFH Setup</span><span class="sk-desc">Reliable internet with backup connectivity</span></span></li>
         </ul>
       </div>
 
@@ -353,12 +356,12 @@
           <div><div class="skill-card-title">Productivity & Platforms</div><div class="skill-card-subtitle">Systems I navigate daily</div></div>
         </div>
         <ul class="skill-list">
-          <li><strong>Google Workspace</strong> — Docs, Sheets, and Gmail</li>
-          <li><strong>ActiveCampaign · MailerLite · Mailchimp</strong> — email automation and campaigns</li>
-          <li><strong>ClickFunnels</strong> — sales funnels and landing pages</li>
-          <li><strong>Calendly</strong> — scheduling and appointment management</li>
-          <li><strong>Slack · Microsoft Teams · Zoom</strong> — remote communication</li>
-          <li><strong>Adobe Lightroom</strong> — photo editing and enhancement</li>
+          <li><span></span><span><span class="sk-label">Google Workspace</span><span class="sk-desc">Docs, Sheets &amp; Gmail</span></span></li>
+          <li><span></span><span><span class="sk-label">ActiveCampaign · MailerLite · Mailchimp</span><span class="sk-desc">Email automation &amp; campaigns</span></span></li>
+          <li><span></span><span><span class="sk-label">ClickFunnels</span><span class="sk-desc">Sales funnels &amp; landing pages</span></span></li>
+          <li><span></span><span><span class="sk-label">Calendly</span><span class="sk-desc">Scheduling &amp; appointment management</span></span></li>
+          <li><span></span><span><span class="sk-label">Slack · Microsoft Teams · Zoom</span><span class="sk-desc">Remote communication &amp; meetings</span></span></li>
+          <li><span></span><span><span class="sk-label">Adobe Lightroom</span><span class="sk-desc">Photo editing &amp; enhancement</span></span></li>
         </ul>
       </div>
 
