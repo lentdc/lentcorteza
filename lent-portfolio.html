@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lent Doreez B. Corteza — Virtual Assistant Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#120810; --bg-card:#1e0f19; --bg-soft:#2a1521;
+      --pink:#f72585; --rose:#ff8fab; --blush:#fff0f5; --muted:#c9a0b4; --white:#ffffff;
+      --font-display:'Playfair Display',Georgia,serif;
+      --font-body:'DM Sans',system-ui,sans-serif;
+      --font-mono:'DM Mono',monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--blush); font-family:var(--font-body); font-size:16px; line-height:1.7; overflow-x:hidden; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.2rem 5%; background:rgba(18,8,16,0.88); backdrop-filter:blur(12px); border-bottom:1px solid rgba(247,37,133,0.12); }
+    .nav-logo { font-family:var(--font-display); font-size:1.15rem; font-weight:700; color:var(--white); letter-spacing:0.02em; display:flex; align-items:center; gap:0.6rem; text-decoration:none; }
+    .nav-logo span { color:var(--pink); }
+    .nav-avatar { width:34px; height:34px; border-radius:50%; border:2px solid rgba(247,37,133,0.5); overflow:hidden; display:flex; align-items:center; justify-content:center; background:var(--bg-soft); flex-shrink:0; box-shadow:0 0 10px rgba(247,37,133,0.2); }
+    .nav-avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+    .nav-avatar-placeholder { font-size:1rem; line-height:1; user-select:none; }
+    .nav-links { display:flex; gap:1.8rem; list-style:none; }
+    .nav-links a { font-family:var(--font-mono); font-size:0.75rem; color:var(--muted); text-decoration:none; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--pink); }
+
+    /* HERO */
+    .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:3rem; padding:8rem 6% 5rem; position:relative; overflow:hidden; }
+    .hero::before { content:''; position:absolute; top:-10%; right:-5%; width:55vw; height:55vw; background:radial-gradient(circle,rgba(247,37,133,0.15) 0%,transparent 70%); pointer-events:none; }
+    .hero::after  { content:''; position:absolute; bottom:0; left:-5%; width:35vw; height:35vw; background:radial-gradient(circle,rgba(255,143,171,0.07) 0%,transparent 70%); pointer-events:none; }
+    .hero-text { position:relative; z-index:2; }
+    .hero-eyebrow { display:inline-flex; align-items:center; gap:0.5rem; font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--pink); margin-bottom:1.5rem; }
+    .hero-eyebrow::before { content:''; display:inline-block; width:28px; height:2px; background:var(--pink); }
+    .hero-name { font-family:var(--font-display); font-size:clamp(2.4rem,4.5vw,3.8rem); font-weight:700; line-height:1.1; color:var(--white); margin-bottom:0.4rem; }
+    .hero-name em { font-style:italic; color:var(--pink); }
+    .hero-role-line { font-family:var(--font-mono); font-size:clamp(0.8rem,1.6vw,0.95rem); color:var(--rose); letter-spacing:0.06em; margin-bottom:1.6rem; height:1.5em; display:flex; align-items:center; gap:0.3rem; }
+    .role-static { opacity:0.5; }
+    #typewriter { color:var(--rose); border-right:2px solid var(--pink); animation:blink 0.7s step-end infinite; padding-right:2px; }
+    @keyframes blink { 50% { border-color:transparent; } }
+    .hero-tagline { font-size:1rem; color:var(--muted); max-width:500px; line-height:1.8; margin-bottom:2rem; }
+    .hero-tagline strong { color:var(--blush); font-weight:500; }
+    .hero-meta { display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.2rem; }
+    .badge { display:inline-flex; align-items:center; gap:0.4rem; padding:0.35rem 0.85rem; background:var(--bg-card); border:1px solid rgba(247,37,133,0.22); border-radius:100px; font-family:var(--font-mono); font-size:0.72rem; color:var(--muted); letter-spacing:0.05em; }
+    .hero-ctas { display:flex; flex-wrap:wrap; gap:1rem; }
+    .btn-primary { padding:0.82rem 1.9rem; background:var(--pink); color:var(--white); font-family:var(--font-body); font-size:0.9rem; font-weight:600; border:none; border-radius:50px; cursor:pointer; text-decoration:none; display:inline-block; transition:background 0.2s,transform 0.15s; letter-spacing:0.03em; }
+    .btn-primary:hover { background:#d91e73; transform:translateY(-2px); }
+    .btn-outline { padding:0.82rem 1.9rem; background:transparent; color:var(--rose); font-family:var(--font-body); font-size:0.9rem; font-weight:500; border:1.5px solid rgba(255,143,171,0.5); border-radius:50px; cursor:pointer; text-decoration:none; display:inline-block; transition:border-color 0.2s,color 0.2s,transform 0.15s; letter-spacing:0.03em; }
+    .btn-outline:hover { border-color:var(--pink); color:var(--pink); transform:translateY(-2px); }
+    .hero-video-col { position:relative; z-index:2; display:flex; justify-content:center; align-items:center; }
+    .hero-video-frame { position:relative; width:clamp(280px,38vw,480px); }
+    /* pink glow blob behind video */
+    .hero-video-frame::before { content:''; position:absolute; inset:-20px; border-radius:40% 60% 55% 45%/45% 40% 60% 55%; background:linear-gradient(135deg,rgba(247,37,133,0.2),rgba(255,143,171,0.07)); z-index:0; animation:blobPulse 6s ease-in-out infinite alternate; }
+    @keyframes blobPulse { from{border-radius:40% 60% 55% 45%/45% 40% 60% 55%;} to{border-radius:60% 40% 45% 55%/55% 60% 40% 45%;} }
+    /* decorative corner accent */
+    .hero-video-frame::after { content:''; position:absolute; bottom:-14px; right:-14px; width:65%; height:65%; border:2px solid rgba(247,37,133,0.28); border-radius:30% 70% 60% 40%/40% 30% 70% 60%; z-index:0; }
+    /* the video wrapper */
+    .hero-video-wrap { position:relative; z-index:1; width:100%; border-radius:28px; overflow:hidden; background:#1e0f19; box-shadow:0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(247,37,133,0.18); aspect-ratio:9/16; }
+    /* actual video element */
+    .hero-video-wrap video { width:100%; height:100%; object-fit:cover; display:block; border-radius:28px; }
+    /* placeholder shown until video is added */
+    .video-placeholder { width:100%; height:100%; min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; background:linear-gradient(160deg,#2a1521 0%,#3d1a2e 55%,#1e0f19 100%); padding:2rem; text-align:center; }
+    .video-placeholder .vp-icon { font-size:3rem; opacity:0.5; }
+    .video-placeholder .vp-play {
+      width:56px; height:56px; border-radius:50%;
+      background:rgba(247,37,133,0.15); border:2px solid rgba(247,37,133,0.4);
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:0.5rem;
+    }
+    .video-placeholder .vp-play svg { margin-left:3px; }
+    .video-placeholder p { font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(247,37,133,0.45); line-height:1.7; }
+    /* "Open to Work" floating chip */
+    .hero-avail-chip { position:absolute; bottom:28px; left:-18px; z-index:2; background:var(--bg-card); border:1px solid rgba(247,37,133,0.35); border-radius:100px; padding:0.45rem 1rem; display:flex; align-items:center; gap:0.5rem; font-family:var(--font-mono); font-size:0.72rem; color:var(--blush); letter-spacing:0.07em; box-shadow:0 4px 20px rgba(0,0,0,0.4); }
+    .avail-dot { width:8px; height:8px; border-radius:50%; background:#4ade80; box-shadow:0 0 8px rgba(74,222,128,0.6); animation:pulse-green 2s ease-in-out infinite; }
+    @keyframes pulse-green { 0%,100%{box-shadow:0 0 6px rgba(74,222,128,0.5);}50%{box-shadow:0 0 14px rgba(74,222,128,0.9);} }
+
+    /* SECTION SHARED */
+    section { padding:6rem 5%; }
+    .section-label { font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--pink); margin-bottom:0.6rem; }
+    .section-heading { font-family:var(--font-display); font-size:clamp(1.9rem,4vw,2.8rem); font-weight:700; color:var(--white); line-height:1.2; margin-bottom:1rem; }
+    .section-heading em { font-style:italic; color:var(--pink); }
+
+    /* ABOUT */
+    #about { background:var(--bg-card); border-top:1px solid rgba(247,37,133,0.1); border-bottom:1px solid rgba(247,37,133,0.1); }
+    .about-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1.6fr; gap:5rem; align-items:start; }
+    .about-avatar-wrap { width:200px; height:200px; border-radius:50%; background:var(--bg-soft); border:3px solid rgba(247,37,133,0.35); display:flex; align-items:center; justify-content:center; margin-bottom:1.8rem; overflow:hidden; box-shadow:0 0 40px rgba(247,37,133,0.12); }
+    .avatar-placeholder { font-size:3.8rem; user-select:none; }
+    .about-quick-facts { display:flex; flex-direction:column; gap:0.85rem; }
+    .fact-item { display:flex; flex-direction:column; gap:0.15rem; }
+    .fact-label { font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--pink); }
+    .fact-value { font-size:0.9rem; color:var(--blush); font-weight:500; }
+    .fact-divider { height:1px; background:rgba(247,37,133,0.12); }
+    .about-intro-big { font-family:var(--font-display); font-style:italic; font-size:clamp(1.05rem,2vw,1.28rem); color:var(--rose); line-height:1.6; margin-bottom:1.8rem; padding-left:1.2rem; border-left:3px solid var(--pink); }
+    .about-body { font-size:0.97rem; color:var(--muted); line-height:1.85; display:flex; flex-direction:column; gap:1.1rem; }
+    .about-body p strong { color:var(--blush); font-weight:500; }
+    .about-hobbies { margin-top:2rem; padding:1.2rem 1.4rem; background:var(--bg-soft); border-radius:12px; border:1px solid rgba(247,37,133,0.15); }
+    .hobbies-label { font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--pink); margin-bottom:0.7rem; }
+    .hobbies-pills { display:flex; flex-wrap:wrap; gap:0.5rem; }
+    .pill { display:inline-flex; align-items:center; gap:0.35rem; padding:0.3rem 0.8rem; background:var(--bg-card); border:1px solid rgba(255,143,171,0.25); border-radius:100px; font-size:0.8rem; color:var(--rose); }
+
+    /* SKILLS & TOOLS */
+    #skills { background:var(--bg); }
+    .skills-wrap { max-width:1100px; margin:0 auto; }
+    .skills-header { margin-bottom:3rem; }
+    .skills-layout { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .skill-card { background:var(--bg-card); border:1px solid rgba(247,37,133,0.12); border-radius:20px; padding:1.8rem; transition:border-color 0.2s,transform 0.2s; }
+    .skill-card:hover { border-color:rgba(247,37,133,0.3); transform:translateY(-3px); }
+    .skill-card-header { display:flex; align-items:center; gap:0.9rem; margin-bottom:1.3rem; padding-bottom:1rem; border-bottom:1px solid rgba(247,37,133,0.1); }
+    .skill-icon { width:44px; height:44px; background:var(--bg-soft); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; border:1px solid rgba(247,37,133,0.18); flex-shrink:0; }
+    .skill-card-title { font-family:var(--font-display); font-size:1.05rem; font-weight:700; color:var(--white); line-height:1.2; }
+    .skill-card-subtitle { font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--pink); margin-top:0.1rem; }
+    .skill-list { list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
+    .skill-list li { display:flex; align-items:flex-start; gap:0.6rem; font-size:0.9rem; color:var(--muted); line-height:1.5; }
+    .skill-list li::before { content:'✦'; color:var(--pink); font-size:0.55rem; margin-top:0.42rem; flex-shrink:0; }
+    .skill-list li strong { color:var(--blush); font-weight:500; }
+
+    /* TOOLS CARD */
+    .tools-card { grid-column:span 2; background:var(--bg-card); border:1px solid rgba(247,37,133,0.12); border-radius:20px; padding:1.8rem; }
+    .tools-groups { display:grid; grid-template-columns:repeat(4,1fr); gap:1.6rem; margin-top:1.3rem; }
+    .tool-group { display:flex; flex-direction:column; gap:0.5rem; }
+    .tool-group-label { font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--pink); padding-bottom:0.4rem; border-bottom:1px solid rgba(247,37,133,0.12); margin-bottom:0.3rem; }
+
+    /* Logo pill */
+    .tool-tag {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.38rem 0.75rem;
+      background:var(--bg-soft);
+      border:1px solid rgba(255,143,171,0.15);
+      border-radius:10px;
+      font-size:0.82rem; color:var(--blush);
+      width:100%;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .tool-tag:hover { border-color:rgba(247,37,133,0.35); background:#331929; }
+    .tool-tag.ai-tag { border-color:rgba(247,37,133,0.28); color:var(--rose); }
+    .tool-logo { width:18px; height:18px; object-fit:contain; flex-shrink:0; border-radius:3px; }
+    .tool-logo-svg { width:18px; height:18px; flex-shrink:0; }
+
+    /* TESTIMONIALS */
+    #testimonials { background:var(--bg-card); border-top:1px solid rgba(247,37,133,0.1); border-bottom:1px solid rgba(247,37,133,0.1); }
+    .testimonials-header { text-align:center; max-width:600px; margin:0 auto 3.5rem; }
+    .testimonials-subtitle { font-size:0.95rem; color:var(--muted); line-height:1.7; }
+    .testimonials-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .tcard { background:var(--bg); border:1px solid rgba(247,37,133,0.12); border-radius:20px; padding:2rem 1.8rem 1.8rem; display:flex; flex-direction:column; gap:1.2rem; transition:border-color 0.25s,transform 0.2s; position:relative; overflow:hidden; }
+    .tcard::before { content:'\201C'; position:absolute; top:-8px; right:18px; font-family:var(--font-display); font-size:6rem; line-height:1; color:rgba(247,37,133,0.08); pointer-events:none; user-select:none; }
+    .tcard:hover { border-color:rgba(247,37,133,0.35); transform:translateY(-4px); }
+    .tcard-stars { display:flex; gap:3px; }
+    .star { color:var(--pink); font-size:0.85rem; }
+    .tcard-quote { font-family:var(--font-display); font-style:italic; font-size:0.97rem; color:var(--blush); line-height:1.75; flex:1; }
+    .tcard-person { display:flex; align-items:center; gap:0.85rem; padding-top:1rem; border-top:1px solid rgba(247,37,133,0.1); }
+    .tcard-avatar { width:48px; height:48px; border-radius:50%; border:2px solid rgba(247,37,133,0.3); display:flex; align-items:center; justify-content:center; font-size:1.4rem; background:var(--bg-soft); overflow:hidden; flex-shrink:0; }
+    .tcard-info { display:flex; flex-direction:column; }
+    .tcard-name { font-weight:600; font-size:0.88rem; color:var(--white); }
+    .tcard-role { font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.08em; color:var(--pink); text-transform:uppercase; }
+
+    /* FOOTER */
+    .footer-teaser { padding:5rem 5% 3.5rem; text-align:center; background:var(--bg); }
+    .footer-teaser p { font-family:var(--font-display); font-size:clamp(1.2rem,3vw,1.8rem); font-style:italic; color:var(--muted); max-width:600px; margin:0 auto 1.8rem; line-height:1.5; }
+    .footer-teaser p em { color:var(--pink); font-style:normal; }
+    .footer-note { font-family:var(--font-mono); font-size:0.7rem; color:rgba(201,160,180,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-top:3rem; }
+
+    /* RESPONSIVE */
+    @media (max-width:1000px) { .tools-groups { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:900px) {
+      .hero { grid-template-columns:1fr; min-height:unset; padding:7rem 5% 4rem; gap:3rem; }
+      .hero-video-col { order:-1; }
+      .hero-video-frame { width:clamp(200px,60vw,320px); margin:0 auto; }
+      .about-grid { grid-template-columns:1fr; gap:2.5rem; }
+      .skills-layout { grid-template-columns:1fr; }
+      .tools-card { grid-column:span 1; }
+      .testimonials-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      nav { padding:1rem 4%; } .nav-links { gap:1rem; } .nav-links a { font-size:0.65rem; }
+      .hero-avail-chip { left:0; bottom:16px; font-size:0.65rem; }
+      .tools-groups { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      #typewriter { animation:none; border-right:none; }
+      .hero-video-frame::before,.avail-dot { animation:none; }
+      .btn-primary:hover,.btn-outline:hover,.tcard:hover,.skill-card:hover,.tool-tag:hover { transform:none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <div class="nav-avatar">
+      <!-- Replace with your photo: <img src="your-photo.jpg" alt="Lent Corteza"> -->
+      <span class="nav-avatar-placeholder">👩</span>
+    </div>
+    Lent <span>Corteza</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Available for new clients</div>
+    <h1 class="hero-name">Lent Doreez<br><em>B. Corteza</em></h1>
+    <div class="hero-role-line"><span class="role-static">✦</span><span id="typewriter"></span></div>
+    <p class="hero-tagline">Helping businesses <strong>stay organized</strong>, engage their customers, and grow — through exceptional support, efficient systems, and a little creative magic.</p>
+    <div class="hero-meta">
+      <span class="badge">📍 Cebu, Philippines</span>
+      <span class="badge">🗣️ English: C1 Fluent</span>
+      <span class="badge">🌐 Remote-Ready</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Let's Connect</a>
+    </div>
+  </div>
+  <div class="hero-video-col">
+    <div class="hero-video-frame">
+      <div class="hero-video-wrap">
+
+        <!--
+          ╔══════════════════════════════════════════════════╗
+          ║  TO ADD YOUR VIDEO:                              ║
+          ║  1. Delete the <div class="video-placeholder">   ║
+          ║     block below.                                 ║
+          ║  2. Uncomment and update the <video> tag.        ║
+          ║  Tip: Portrait (9:16) video looks best here.     ║
+          ╚══════════════════════════════════════════════════╝
+
+        <video autoplay muted loop playsinline poster="your-thumbnail.jpg">
+          <source src="your-video.mp4" type="video/mp4">
+        </video>
+        -->
+
+        <!-- Placeholder — remove once video is added -->
+        <div class="video-placeholder">
+          <div class="vp-play">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M6 4l14 8-14 8V4z" fill="rgba(247,37,133,0.7)"/>
+            </svg>
+          </div>
+          <p>Your intro video<br>goes here<br><br>Replace this block<br>with a &lt;video&gt; tag</p>
+        </div>
+
+      </div>
+      <div class="hero-avail-chip"><div class="avail-dot"></div>Open to Work</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="about-avatar-wrap"><span class="avatar-placeholder">👩‍💼</span></div>
+      <div class="about-quick-facts">
+        <div class="fact-item"><span class="fact-label">Based In</span><span class="fact-value">Cebu, Philippines</span></div>
+        <div class="fact-divider"></div>
+        <div class="fact-item"><span class="fact-label">English Proficiency</span><span class="fact-value">C1 — Fluent</span></div>
+        <div class="fact-divider"></div>
+        <div class="fact-item"><span class="fact-label">Background</span><span class="fact-value">BPO → Freelance VA</span></div>
+        <div class="fact-divider"></div>
+        <div class="fact-item"><span class="fact-label">Languages</span><span class="fact-value">English · Filipino</span></div>
+        <div class="fact-divider"></div>
+        <div class="fact-item"><span class="fact-label">Availability</span><span class="fact-value">Open to New Projects</span></div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="section-label">About Me</div>
+      <h2 class="section-heading">Hi, I'm Lent 👋<br>Nice to <em>meet you.</em></h2>
+      <blockquote class="about-intro-big">A customer-focused Virtual Assistant, Executive Assistant, and Customer Support Professional — someone who genuinely loves helping people and businesses thrive.</blockquote>
+      <div class="about-body">
+        <p>My professional journey began in the <strong>BPO industry</strong>, where I built a strong foundation supporting U.S.-based clients in customer service and technical support roles at Sykes, Teleperformance, and ePerformax. That experience sharpened my communication, problem-solving, and adaptability — qualities I carry into every project today.</p>
+        <p>Now working fully remote as a <strong>Freelance Executive Assistant</strong>, I partner with businesses of all sizes to manage daily operations, generate leads, coordinate recruitment, build websites, execute email marketing campaigns, and create engaging content that drives real results.</p>
+        <p>What makes me different? It's the combination of <strong>sharp attention to detail</strong>, genuine care for my clients' success, and the kind of proactive communication that keeps everything running smoothly — even across time zones.</p>
+        <p>Whether you need a reliable assistant, a customer support specialist, or a creative collaborator, I'm committed to delivering quality work and making every interaction a positive one. <strong>Let's turn your goals into results.</strong></p>
+      </div>
+      <div class="about-hobbies">
+        <div class="hobbies-label">Beyond the Desk</div>
+        <div class="hobbies-pills">
+          <span class="pill">🎤 Singing</span><span class="pill">💃 Dancing</span><span class="pill">🎵 Songwriting</span><span class="pill">📚 Reading</span><span class="pill">✨ Creativity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS & TOOLS -->
+<section id="skills">
+  <div class="skills-wrap">
+    <div class="skills-header">
+      <div class="section-label">What I Bring</div>
+      <h2 class="section-heading">Skills &amp; <em>Tools</em></h2>
+    </div>
+    <div class="skills-layout">
+
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon">🎯</div>
+          <div><div class="skill-card-title">Core Skills</div><div class="skill-card-subtitle">What I do best</div></div>
+        </div>
+        <ul class="skill-list">
+          <li><strong>Customer Support & Issue Resolution</strong> — handling inquiries, complaints, and service requests with empathy</li>
+          <li><strong>Email & Inbox Management</strong> — organizing, responding, and keeping communication flowing efficiently</li>
+          <li><strong>Lead Generation</strong> — research, outreach, and database management to build your pipeline</li>
+          <li><strong>Executive & Admin Support</strong> — scheduling, coordination, documentation, and daily operations</li>
+          <li><strong>Recruitment Coordination</strong> — sourcing, screening, and scheduling candidates for open roles</li>
+          <li><strong>Technical Troubleshooting (Tier 1)</strong> — first-level support and accurate ticket documentation</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon">✍️</div>
+          <div><div class="skill-card-title">Content & Creative</div><div class="skill-card-subtitle">Creative outputs I deliver</div></div>
+        </div>
+        <ul class="skill-list">
+          <li><strong>Email Marketing Campaigns</strong> — writing, designing, and scheduling campaigns that convert</li>
+          <li><strong>Social Media Content</strong> — creating and scheduling posts that grow brand visibility</li>
+          <li><strong>Visual Design</strong> — branded graphics and marketing materials using Canva and AI tools</li>
+          <li><strong>Website Building</strong> — designing and building landing pages using Wix and AI-assisted tools</li>
+          <li><strong>Video Editing</strong> — short-form and long-form content for social and marketing using Adobe Premiere Pro, Filmora, CapCut, and AI-assisted tools</li>
+          <li><strong>AI-Assisted Image & Video Generation</strong> — creating professional visuals with AI</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon">💡</div>
+          <div><div class="skill-card-title">Professional Strengths</div><div class="skill-card-subtitle">How I work</div></div>
+        </div>
+        <ul class="skill-list">
+          <li><strong>Clear Communication</strong> — C1 English, experienced working with U.S. clients</li>
+          <li><strong>Reliable & Self-Motivated</strong> — works independently with minimal supervision</li>
+          <li><strong>Attention to Detail</strong> — committed to data accuracy and confidentiality</li>
+          <li><strong>Quick Learner</strong> — adapts easily to new tools, systems, and workflows</li>
+          <li><strong>Open to Feedback</strong> — continuously improving and growth-oriented</li>
+          <li><strong>Stable WFH Setup</strong> — reliable internet with backup connectivity</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon">⚙️</div>
+          <div><div class="skill-card-title">Productivity & Platforms</div><div class="skill-card-subtitle">Systems I navigate daily</div></div>
+        </div>
+        <ul class="skill-list">
+          <li><strong>Google Workspace</strong> — Docs, Sheets, Gmail for collaboration and organization</li>
+          <li><strong>ActiveCampaign, MailerLite & Mailchimp</strong> — email automation and campaign management</li>
+          <li><strong>ClickFunnels</strong> — building sales funnels and landing pages</li>
+          <li><strong>Calendly</strong> — scheduling and appointment management</li>
+          <li><strong>Slack, Microsoft Teams & Zoom</strong> — remote communication and virtual meetings</li>
+          <li><strong>Adobe Lightroom</strong> — photo editing and visual enhancement</li>
+        </ul>
+      </div>
+
+      <!-- TOOLS FULL-WIDTH CARD WITH LOGOS -->
+      <div class="skill-card tools-card">
+        <div class="skill-card-header">
+          <div class="skill-icon">🛠️</div>
+          <div><div class="skill-card-title">Tools & Technology</div><div class="skill-card-subtitle">My complete toolkit — with logos</div></div>
+        </div>
+        <div class="tools-groups">
+
+          <!-- Admin & Productivity -->
+          <div class="tool-group">
+            <div class="tool-group-label">📋 Admin & Productivity</div>
+
+            <span class="tool-tag">
+              <!-- Google Docs logo -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 2H6C4.9 2 4 2.9 4 4v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6z" fill="#4285F4"/>
+                <path d="M14 2v6h6L14 2z" fill="#A1C2FA"/>
+                <path d="M8 13h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h4v1.5H8V10z" fill="white"/>
+              </svg>
+              Google Docs
+            </span>
+
+            <span class="tool-tag">
+              <!-- Google Sheets logo -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 2H6C4.9 2 4 2.9 4 4v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6z" fill="#34A853"/>
+                <path d="M14 2v6h6L14 2z" fill="#A8D5B5"/>
+                <path d="M8 10h8v1.3H8V10zm0 2.7h3.5V14H8v-1.3zm4.5 0H16V14h-3.5v-1.3zm-4.5 2.7h3.5V16.7H8v-1.3zm4.5 0H16v1.3h-3.5v-1.3z" fill="white"/>
+              </svg>
+              Google Sheets
+            </span>
+
+            <span class="tool-tag">
+              <!-- Gmail logo -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" fill="#EA4335"/>
+                <path d="M20 4H4L12 13l8-9z" fill="#FBBC05"/>
+                <path d="M4 4l8 9 8-9H4z" fill="#34A853"/>
+                <path d="M2 6v12l6-6-6-6z" fill="#4285F4"/>
+                <path d="M22 6l-6 6 6 6V6z" fill="#C5221F"/>
+                <path d="M12 13L4 6H2l10 10 10-10h-2L12 13z" fill="#FBBC05"/>
+              </svg>
+              Gmail
+            </span>
+
+            <span class="tool-tag">
+              <!-- Calendly -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="5" fill="#006BFF"/>
+                <path d="M12 6.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 1.5a4 4 0 110 8 4 4 0 010-8zm.75 1.75h-1.5v3.5l2.5 1.5.75-1.25-1.75-1V9.75z" fill="white"/>
+              </svg>
+              Calendly
+            </span>
+
+            <span class="tool-tag">
+              <!-- ClickFunnels -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="4" fill="#FF6B35"/>
+                <path d="M5 7h14l-3 4H8L5 7zm3 5h8l-2.5 3.5h-3L8 12zm2.5 4.5h3l-1.5 2-1.5-2z" fill="white"/>
+              </svg>
+              ClickFunnels
+            </span>
+          </div>
+
+          <!-- Email Marketing -->
+          <div class="tool-group">
+            <div class="tool-group-label">📧 Email Marketing</div>
+
+            <span class="tool-tag">
+              <!-- ActiveCampaign -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="4" fill="#356AE6"/>
+                <path d="M4 12l4-5 4 5-4 5-4-5zm6 0l4-5 4 5-4 5-4-5z" fill="white" opacity="0.9"/>
+              </svg>
+              ActiveCampaign
+            </span>
+
+            <span class="tool-tag">
+              <!-- MailerLite -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="4" fill="#09C269"/>
+                <path d="M6 8h12v2H6V8zm0 3h12v2H6v-2zm0 3h8v2H6v-2z" fill="white"/>
+              </svg>
+              MailerLite
+            </span>
+
+            <span class="tool-tag">
+              <!-- Mailchimp -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="4" fill="#FFE01B"/>
+                <path d="M12 4c-.8 0-2 .5-2.5 2-.3.8-.2 1.6.1 2.2-.9.4-1.6 1.3-1.6 2.4 0 .4.1.8.2 1.1-.5.3-.7.8-.7 1.3 0 1 .8 1.8 1.8 1.8h5.4c1 0 1.8-.8 1.8-1.8 0-.5-.2-1-.7-1.3.1-.3.2-.7.2-1.1 0-1.1-.7-2-1.6-2.4.3-.6.4-1.4.1-2.2C14 4.5 12.8 4 12 4zm0 1.2c.5 0 1.1.3 1.3.9.2.6 0 1.2-.4 1.6l-.3.2-.3-.2c-.4-.4-.6-1-.4-1.6.2-.6.8-.9 1.1-.9zm-1 5.3c.2-.5.6-.8 1-.8s.8.3 1 .8l.1.3h.3c.5 0 .9.4.9.9s-.4.9-.9.9H9.8c-.5 0-.9-.4-.9-.9s.4-.9.9-.9h.3l.1-.3z" fill="#241C15"/>
+              </svg>
+              Mailchimp
+            </span>
+          </div>
+
+          <!-- Communication -->
+          <div class="tool-group">
+            <div class="tool-group-label">💬 Communication</div>
+
+            <span class="tool-tag">
+              <!-- Slack -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.042 15.165a2.528 2.528 0 01-2.52 2.523A2.528 2.528 0 010 15.165a2.527 2.527 0 012.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 012.521-2.52 2.527 2.527 0 012.521 2.52v6.313A2.528 2.528 0 018.834 24a2.528 2.528 0 01-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 01-2.521-2.52A2.528 2.528 0 018.834 0a2.528 2.528 0 012.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 012.521 2.521 2.528 2.528 0 01-2.521 2.521H2.522A2.528 2.528 0 010 8.834a2.528 2.528 0 012.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 012.522-2.521A2.528 2.528 0 0124 8.834a2.528 2.528 0 01-2.522 2.521h-2.522V8.834zM17.687 8.834a2.528 2.528 0 01-2.521 2.521 2.527 2.527 0 01-2.521-2.521V2.522A2.527 2.527 0 0115.166 0a2.528 2.528 0 012.521 2.522v6.312zM15.166 18.956a2.528 2.528 0 012.521 2.522A2.528 2.528 0 0115.166 24a2.527 2.527 0 01-2.521-2.522v-2.522h2.521zM15.166 17.687a2.527 2.527 0 01-2.521-2.521 2.526 2.526 0 012.521-2.521h6.312A2.527 2.527 0 0124 15.166a2.528 2.528 0 01-2.522 2.521h-6.312z" fill="#E01E5A"/>
+              </svg>
+              Slack
+            </span>
+
+            <span class="tool-tag">
+              <!-- Microsoft Teams -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.5 7.5a2 2 0 100-4 2 2 0 000 4zm3 1H12a1 1 0 00-1 1v5a3 3 0 006 0V9.5a1 1 0 00-1-1z" fill="#5059C9"/>
+                <path d="M9.5 8.5a1.75 1.75 0 100-3.5 1.75 1.75 0 000 3.5zm2.5 1.25H5a.75.75 0 00-.75.75V15a3.25 3.25 0 006.5 0v-4.5a.75.75 0 00-.75-.75z" fill="#7B83EB"/>
+                <path d="M11.5 10H5a.75.75 0 00-.75.75V15a3.25 3.25 0 003.172 3.248A3.253 3.253 0 0011.5 15v-4.25a.75.75 0 00-.75-.75H11.5z" fill="#464EB8" opacity="0.5"/>
+              </svg>
+              Microsoft Teams
+            </span>
+
+            <span class="tool-tag">
+              <!-- Zoom -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="5" fill="#2D8CFF"/>
+                <path d="M4 8.5C4 7.67 4.67 7 5.5 7h8C14.33 7 15 7.67 15 8.5v7c0 .83-.67 1.5-1.5 1.5h-8C4.67 17 4 16.33 4 15.5v-7zm11 1.75l3.5-2.25v7l-3.5-2.25v-2.5z" fill="white"/>
+              </svg>
+              Zoom
+            </span>
+          </div>
+
+          <!-- Creative & AI -->
+          <div class="tool-group">
+            <div class="tool-group-label">✨ Creative & AI-Powered</div>
+
+            <span class="tool-tag">
+              <!-- Canva -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="6" fill="#00C4CC"/>
+                <path d="M12 4.5C9.5 4.5 7 6.7 7 9.5c0 1.3.4 2.3 1 3l1.2-1.2c-.4-.5-.7-1.1-.7-1.8C8.5 7.6 10 6 12 6c1.7 0 3 1 3.5 2.5H17C16.4 5.9 14.4 4.5 12 4.5zm0 15c2.5 0 5-2.2 5-5 0-1.3-.4-2.3-1-3l-1.2 1.2c.4.5.7 1.1.7 1.8 0 1.9-1.5 3.5-3.5 3.5-1.7 0-3-1-3.5-2.5H7C7.6 18.1 9.6 19.5 12 19.5zm5-7.5c0 .8-.2 1.5-.5 2.2l1.3 1.3c.7-1 1.2-2.2 1.2-3.5s-.5-2.5-1.2-3.5l-1.3 1.3c.3.7.5 1.4.5 2.2zm-10 0c0-.8.2-1.5.5-2.2L6.2 8.5C5.5 9.5 5 10.7 5 12s.5 2.5 1.2 3.5l1.3-1.3C7.2 13.5 7 12.8 7 12z" fill="white"/>
+              </svg>
+              Canva
+            </span>
+
+            <span class="tool-tag">
+              <!-- Adobe Premiere Pro -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="4" fill="#00005B"/>
+                <path d="M4 18V6h4.2c1 0 1.8.2 2.4.7.6.4 1 1.1 1 2 0 .6-.1 1.1-.4 1.5-.3.4-.7.7-1.2.9.6.1 1.1.4 1.5.9.4.5.6 1.1.6 1.8 0 1-.3 1.7-1 2.3-.7.5-1.6.8-2.8.8H4zm2-7.2h2c.5 0 .9-.1 1.2-.4.3-.2.4-.6.4-1 0-.5-.1-.8-.4-1-.3-.2-.7-.4-1.3-.4H6v2.8zm0 5.2h2.3c.6 0 1-.1 1.3-.4.3-.3.5-.7.5-1.2 0-.5-.2-.9-.5-1.1-.3-.3-.8-.4-1.4-.4H6V16zm8.5 2V9h1.8l.2 1.3c.3-.5.6-.8 1-1.1.4-.3.9-.4 1.4-.4.2 0 .4 0 .5.1v1.9c-.2 0-.4-.1-.7-.1-.6 0-1 .2-1.4.5-.3.3-.5.8-.5 1.4V18h-2.3z" fill="#9999FF"/>
+              </svg>
+              Adobe Premiere Pro
+            </span>
+
+            <span class="tool-tag">
+              <!-- Filmora -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="5" fill="#FCB900"/>
+                <path d="M12 4.5L5 8.5v7l7 4 7-4v-7L12 4.5zm0 2.3l4.8 2.7-4.8 2.8L7.2 9.5 12 6.8zM6.5 10.8l5 2.9v5.1l-5-2.8v-5.2zm6.5 8v-5.1l5-2.9v5.2l-5 2.8z" fill="white"/>
+              </svg>
+              Filmora
+            </span>
+
+            <span class="tool-tag">
+              <!-- CapCut -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="6" fill="#000000"/>
+                <path d="M8 7.5l8 4.5-8 4.5V7.5z" fill="white"/>
+                <circle cx="17" cy="8" r="2" fill="#FE2C55"/>
+              </svg>
+              CapCut
+            </span>
+
+            <span class="tool-tag">
+              <!-- Adobe Lightroom -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="4" fill="#31A8FF"/>
+                <path d="M5 18L9.5 6h2L7 18H5zm8-12h2l4.5 12h-2l-1.1-3h-4.7l-1.1 3h-2L13 6zm-.9 7.5h3.5L14 8.5l-1.9 5z" fill="white"/>
+              </svg>
+              Adobe Lightroom
+            </span>
+
+            <span class="tool-tag">
+              <!-- Wix -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="4" fill="#FAAD00"/>
+                <path d="M3 9l2.5 6 2-4 2 4L12 9h-1.5l-1.5 3.5-2-4L5.5 12 4 9H3zm9.5 0l1.5 6 2-6h1.2l2 6 1.5-6H22l-2.5 8h-1.3l-2-5.5-2 5.5H12.8L10.5 9h2z" fill="white"/>
+              </svg>
+              Wix Website Builder
+            </span>
+
+            <span class="tool-tag ai-tag">
+              <!-- AI sparkle icon -->
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z" fill="#f72585"/>
+                <path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8L19 14z" fill="#ff8fab"/>
+                <path d="M5 16l.6 1.4L7 18l-1.4.6L5 20l-.6-1.4L3 18l1.4-.6L5 16z" fill="#ff8fab"/>
+              </svg>
+              AI Image Generation
+            </span>
+
+            <span class="tool-tag ai-tag">
+              <svg class="tool-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z" fill="#f72585"/>
+                <path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8L19 14z" fill="#ff8fab"/>
+                <path d="M5 16l.6 1.4L7 18l-1.4.6L5 20l-.6-1.4L3 18l1.4-.6L5 16z" fill="#ff8fab"/>
+              </svg>
+              AI Video Generation
+            </span>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-header">
+    <div class="section-label">Kind Words</div>
+    <h2 class="section-heading">What <em>Clients Say</em></h2>
+    <p class="testimonials-subtitle">Building trust through consistent, quality work — here's what people I've had the pleasure of working with have to say.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="tcard">
+      <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="tcard-quote">"Lent completely transformed how our team operates day-to-day. She took ownership of our inbox, scheduling, lead tracking, and client follow-ups without missing a beat. Her communication is clear, her turnaround is fast, and she genuinely cares about getting results."</p>
+      <div class="tcard-person">
+        <div class="tcard-avatar">👨‍💼</div>
+        <div class="tcard-info"><span class="tcard-name">James R. Mitchell</span><span class="tcard-role">CEO · U.S.-Based Marketing Agency</span></div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="tcard-quote">"Reliable, professional, and always one step ahead. Lent handled our email campaigns and social content with so much creativity and attention to detail. She built our landing page beautifully too — she truly does it all."</p>
+      <div class="tcard-person">
+        <div class="tcard-avatar">👩‍💼</div>
+        <div class="tcard-info"><span class="tcard-name">Sarah L. Thompson</span><span class="tcard-role">Founder · E-Commerce Brand</span></div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="tcard-quote">"Exceptional customer support skills. Our clients loved Lent. She handled every inquiry with patience, empathy, and speed. Response quality went up and complaints went down — that speaks volumes."</p>
+      <div class="tcard-person">
+        <div class="tcard-avatar">👨‍💻</div>
+        <div class="tcard-info"><span class="tcard-name">Daniel C. Reyes</span><span class="tcard-role">Operations Manager · SaaS Startup</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<!-- CONTACT MODAL -->
+<div id="contact-modal" style="display:none;position:fixed;inset:0;z-index:999;align-items:center;justify-content:center;padding:1.5rem;">
+  <!-- backdrop -->
+  <div id="modal-backdrop" style="position:absolute;inset:0;background:rgba(10,4,9,0.85);backdrop-filter:blur(8px);"></div>
+  <!-- card -->
+  <div style="position:relative;z-index:1;background:#1e0f19;border:1px solid rgba(247,37,133,0.28);border-radius:24px;padding:2.8rem 2.6rem 2.4rem;max-width:460px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,0.6);">
+    <!-- close button -->
+    <button onclick="closeModal()" style="position:absolute;top:1.1rem;right:1.2rem;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseover="this.style.color='var(--pink)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+
+    <!-- heading -->
+    <div style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--pink);margin-bottom:0.5rem;">Let's Connect</div>
+    <h2 style="font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--white);margin-bottom:0.4rem;line-height:1.2;">Get In <em style="font-style:italic;color:var(--pink);">Touch</em></h2>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:2rem;line-height:1.6;">I'd love to hear about your project. Reach out through any of the options below and I'll get back to you promptly.</p>
+
+    <!-- Email -->
+    <a href="mailto:lentdcorteza@gmail.com" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:#2a1521;border:1px solid rgba(247,37,133,0.15);border-radius:14px;text-decoration:none;margin-bottom:0.85rem;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.borderColor='rgba(247,37,133,0.45)';this.style.background='#331929'" onmouseout="this.style.borderColor='rgba(247,37,133,0.15)';this.style.background='#2a1521'">
+      <div style="width:42px;height:42px;border-radius:12px;background:#1e0f19;border:1px solid rgba(247,37,133,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#f72585" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M22 6l-10 7L2 6" stroke="#f72585" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--pink);margin-bottom:0.15rem;">Email</div>
+        <div style="font-size:0.9rem;color:var(--blush);font-weight:500;">lentdcorteza@gmail.com</div>
+      </div>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/639685020124" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:#2a1521;border:1px solid rgba(247,37,133,0.15);border-radius:14px;text-decoration:none;margin-bottom:0.85rem;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.borderColor='rgba(247,37,133,0.45)';this.style.background='#331929'" onmouseout="this.style.borderColor='rgba(247,37,133,0.15)';this.style.background='#2a1521'">
+      <div style="width:42px;height:42px;border-radius:12px;background:#1e0f19;border:1px solid rgba(247,37,133,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.52 3.48A11.93 11.93 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.22-3.48-8.52zM12 22c-1.85 0-3.67-.5-5.25-1.44l-.38-.22-3.9 1.02 1.04-3.8-.25-.4A9.94 9.94 0 012 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.94 9.94 0 0122 12c0 5.52-4.48 10-10 10zm5.47-7.4c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34z" fill="#25D366"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--pink);margin-bottom:0.15rem;">WhatsApp</div>
+        <div style="font-size:0.9rem;color:var(--blush);font-weight:500;">+63 968 502 0124</div>
+      </div>
+    </a>
+
+    <!-- Calendly -->
+    <a href="https://calendly.com/lentdcorteza/30min" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:#2a1521;border:1px solid rgba(247,37,133,0.15);border-radius:14px;text-decoration:none;margin-bottom:1.6rem;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.borderColor='rgba(247,37,133,0.45)';this.style.background='#331929'" onmouseout="this.style.borderColor='rgba(247,37,133,0.15)';this.style.background='#2a1521'">
+      <div style="width:42px;height:42px;border-radius:12px;background:#1e0f19;border:1px solid rgba(247,37,133,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="5" fill="#006BFF"/>
+          <path d="M12 5.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zm0 1.8a4.7 4.7 0 110 9.4 4.7 4.7 0 010-9.4zm.75 2h-1.5v4l2.9 1.75.75-1.25-2.15-1.3V9.3z" fill="white"/>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--pink);margin-bottom:0.15rem;">Book a Meeting</div>
+        <div style="font-size:0.9rem;color:var(--blush);font-weight:500;">Schedule a free 30-min call</div>
+        <div style="font-size:0.75rem;color:var(--muted);margin-top:0.1rem;">calendly.com/lentdcorteza</div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;opacity:0.4;"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <!-- Response time note -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.08em;color:var(--muted);opacity:0.7;">
+      <span style="color:#4ade80;font-size:0.65rem;">●</span> Typically responds within 24 hours
+    </div>
+  </div>
+</div>
+
+<div class="footer-teaser">
+  <p>"Ready to build something <em>great</em> together?"</p>
+  <button onclick="openModal()" class="btn-primary">Get In Touch</button>
+  <div class="footer-note">© 2025 Lent Doreez B. Corteza · All Rights Reserved</div>
+</div>
+
+<script>
+  const roles = ["Virtual Assistant","Executive Assistant","Customer Support Specialist","Email Marketing Assistant","Lead Generation Specialist","Content Creator"];
+  let roleIndex=0, charIndex=0, deleting=false;
+  const el=document.getElementById('typewriter');
+  function type(){
+    const current=roles[roleIndex];
+    if(!deleting){el.textContent=current.slice(0,charIndex+1);charIndex++;if(charIndex===current.length){deleting=true;setTimeout(type,1600);return;}}
+    else{el.textContent=current.slice(0,charIndex-1);charIndex--;if(charIndex===0){deleting=false;roleIndex=(roleIndex+1)%roles.length;}}
+    setTimeout(type,deleting?38:68);
+  }
+  type();
+</script>
+<script>
+  function openModal() {
+    const m = document.getElementById('contact-modal');
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    // small delay so display:flex is applied before opacity transition
+    requestAnimationFrame(() => { m.style.opacity = '0'; requestAnimationFrame(() => { m.style.transition = 'opacity 0.25s'; m.style.opacity = '1'; }); });
+  }
+  function closeModal() {
+    const m = document.getElementById('contact-modal');
+    m.style.opacity = '0';
+    setTimeout(() => { m.style.display = 'none'; document.body.style.overflow = ''; }, 250);
+  }
+  // close on backdrop click
+  document.getElementById('modal-backdrop').addEventListener('click', closeModal);
+  // close on Escape key
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
