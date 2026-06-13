@@ -159,8 +159,64 @@
     .tcard-name { font-weight:600; font-size:0.88rem; color:var(--white); }
     .tcard-role { font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.08em; color:var(--pink); text-transform:uppercase; }
 
-    /* FOOTER */
-    .footer-teaser { padding:5rem 5% 3.5rem; text-align:center; background:var(--bg); }
+    /* SERVICES */
+    #services { background:var(--bg-card); border-top:1px solid rgba(247,37,133,0.1); border-bottom:1px solid rgba(247,37,133,0.1); }
+    .services-wrap { max-width:1100px; margin:0 auto; }
+    .services-header { text-align:center; max-width:700px; margin:0 auto 3.5rem; }
+    .services-header .section-heading { margin-bottom:0.6rem; }
+    .services-intro { font-size:0.97rem; color:var(--muted); line-height:1.75; }
+
+    .services-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.8rem; }
+
+    .svc-card {
+      background:var(--bg);
+      border:1px solid rgba(247,37,133,0.12);
+      border-radius:20px;
+      padding:2rem;
+      display:flex; flex-direction:column; gap:1.4rem;
+      transition:border-color 0.25s, transform 0.2s;
+    }
+    .svc-card:hover { border-color:rgba(247,37,133,0.35); transform:translateY(-4px); }
+
+    .svc-card-header { display:flex; align-items:flex-start; gap:1rem; }
+    .svc-icon {
+      width:48px; height:48px; border-radius:14px; flex-shrink:0;
+      background:var(--bg-soft); border:1px solid rgba(247,37,133,0.2);
+      display:flex; align-items:center; justify-content:center; font-size:1.4rem;
+    }
+    .svc-card-meta { display:flex; flex-direction:column; gap:0.2rem; }
+    .svc-card-title { font-family:var(--font-display); font-size:1.15rem; font-weight:700; color:var(--white); line-height:1.2; }
+    .svc-card-desc { font-size:0.87rem; color:var(--muted); line-height:1.6; }
+
+    .svc-divider { height:1px; background:rgba(247,37,133,0.1); }
+
+    .svc-items { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+    .svc-item {
+      display:flex; align-items:center; gap:0.5rem;
+      padding:0.42rem 0;
+      font-size:0.82rem; color:var(--muted);
+      border-bottom:1px solid rgba(247,37,133,0.06);
+    }
+    .svc-item:nth-last-child(-n+2) { border-bottom:none; }
+    .svc-item::before { content:'✦'; color:var(--pink); font-size:0.45rem; flex-shrink:0; }
+
+    .svc-cta {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.6rem 1.2rem;
+      background:transparent;
+      border:1.5px solid rgba(247,37,133,0.3);
+      border-radius:50px;
+      font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.08em;
+      text-transform:uppercase; color:var(--pink); text-decoration:none;
+      cursor:pointer; transition:background 0.2s, border-color 0.2s;
+      width:fit-content; margin-top:auto;
+    }
+    .svc-cta:hover { background:rgba(247,37,133,0.1); border-color:var(--pink); }
+
+    @media (max-width:900px) { .services-grid { grid-template-columns:1fr; } }
+    @media (max-width:600px) { .svc-items { grid-template-columns:1fr; } .svc-item:last-child { border-bottom:none; } }
+
+    
     .footer-teaser p { font-family:var(--font-display); font-size:clamp(1.2rem,3vw,1.8rem); font-style:italic; color:var(--muted); max-width:600px; margin:0 auto 1.8rem; line-height:1.5; }
     .footer-teaser p em { color:var(--pink); font-style:normal; }
     .footer-note { font-family:var(--font-mono); font-size:0.7rem; color:rgba(201,160,180,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-top:3rem; }
@@ -202,7 +258,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#services">Services</a></li>
+    <li><a href="services.html">Services</a></li>
     <li><a href="#work">Portfolio</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -610,6 +666,116 @@
         <div class="tcard-avatar">👨‍💻</div>
         <div class="tcard-info"><span class="tcard-name">Daniel C. Reyes</span><span class="tcard-role">Operations Manager · SaaS Startup</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-wrap">
+
+    <div class="services-header">
+      <div class="section-label">What I Offer</div>
+      <h2 class="section-heading">Services Designed to Help<br>Your Business <em>Grow</em></h2>
+      <p class="services-intro">From executive assistance and customer support to website creation and marketing — reliable virtual solutions that keep your business organized, your customers happy, and your growth on track.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- Executive Assistance -->
+      <div class="svc-card">
+        <div class="svc-card-header">
+          <div class="svc-icon">📋</div>
+          <div class="svc-card-meta">
+            <div class="svc-card-title">Executive Assistance</div>
+            <div class="svc-card-desc">Stay organized and focused on growth with professional administrative support and day-to-day operations management.</div>
+          </div>
+        </div>
+        <div class="svc-divider"></div>
+        <div class="svc-items">
+          <span class="svc-item">Email Management</span>
+          <span class="svc-item">Calendar & Scheduling</span>
+          <span class="svc-item">Administrative Support</span>
+          <span class="svc-item">Internet Research</span>
+          <span class="svc-item">Data Entry</span>
+          <span class="svc-item">File & Document Organization</span>
+          <span class="svc-item">Meeting Coordination</span>
+          <span class="svc-item">Task & Project Management</span>
+        </div>
+        <button onclick="openModal()" class="svc-cta">Hire Me for This ↗</button>
+      </div>
+
+      <!-- Customer Support -->
+      <div class="svc-card">
+        <div class="svc-card-header">
+          <div class="svc-icon">💬</div>
+          <div class="svc-card-meta">
+            <div class="svc-card-title">Customer Support</div>
+            <div class="svc-card-desc">Deliver exceptional customer experiences through clear communication, fast response times, and professional handling.</div>
+          </div>
+        </div>
+        <div class="svc-divider"></div>
+        <div class="svc-items">
+          <span class="svc-item">Email Support</span>
+          <span class="svc-item">Live Chat Support</span>
+          <span class="svc-item">Technical Support</span>
+          <span class="svc-item">Customer Follow-Ups</span>
+          <span class="svc-item">Complaint Resolution</span>
+          <span class="svc-item">CRM Management</span>
+          <span class="svc-item">Customer Satisfaction</span>
+          <span class="svc-item">Ticket Documentation</span>
+        </div>
+        <button onclick="openModal()" class="svc-cta">Hire Me for This ↗</button>
+      </div>
+
+      <!-- Website Design & Digital Support -->
+      <div class="svc-card">
+        <div class="svc-card-header">
+          <div class="svc-icon">🌐</div>
+          <div class="svc-card-meta">
+            <div class="svc-card-title">Website & Digital Support</div>
+            <div class="svc-card-desc">Build and maintain professional websites using modern tools, AI-assisted workflows, and clean digital experiences.</div>
+          </div>
+        </div>
+        <div class="svc-divider"></div>
+        <div class="svc-items">
+          <span class="svc-item">Business & Portfolio Websites</span>
+          <span class="svc-item">Landing Pages</span>
+          <span class="svc-item">Website Updates & Maintenance</span>
+          <span class="svc-item">Content Upload & Management</span>
+          <span class="svc-item">Basic SEO Optimization</span>
+          <span class="svc-item">Website Content Creation</span>
+          <span class="svc-item">AI-Assisted Development</span>
+          <span class="svc-item">AI Content & Workflow Tools</span>
+        </div>
+        <button onclick="openModal()" class="svc-cta">Hire Me for This ↗</button>
+      </div>
+
+      <!-- Marketing & Lead Generation -->
+      <div class="svc-card">
+        <div class="svc-card-header">
+          <div class="svc-icon">📈</div>
+          <div class="svc-card-meta">
+            <div class="svc-card-title">Marketing & Lead Generation</div>
+            <div class="svc-card-desc">Grow your business through targeted outreach, marketing content, and consistent audience engagement strategies.</div>
+          </div>
+        </div>
+        <div class="svc-divider"></div>
+        <div class="svc-items">
+          <span class="svc-item">Social Media Management</span>
+          <span class="svc-item">Content Scheduling</span>
+          <span class="svc-item">Graphic Design</span>
+          <span class="svc-item">Email Marketing</span>
+          <span class="svc-item">Newsletter Creation</span>
+          <span class="svc-item">Lead Research</span>
+          <span class="svc-item">Prospect List Building</span>
+          <span class="svc-item">Cold Outreach & Follow-Ups</span>
+          <span class="svc-item">Appointment Setting</span>
+          <span class="svc-item">Client Follow-Ups</span>
+        </div>
+        <button onclick="openModal()" class="svc-cta">Hire Me for This ↗</button>
+      </div>
+
     </div>
   </div>
 </section>
