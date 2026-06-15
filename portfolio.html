@@ -133,12 +133,14 @@
     }
 
     .slide {
-      position: absolute; inset: 0;
-      opacity: 0;
-      transition: opacity 0.6s ease;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      opacity: 0; transition: opacity 0.6s ease;
     }
     .slide.active { opacity: 1; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; position: absolute; inset: 0; }
+    .slide img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center; display: block;
+    }
 
     /* placeholder slide */
     .slide-placeholder {
@@ -291,12 +293,12 @@
   <div class="section-label">Featured Work</div>
   <h2 class="section-heading">Video <em>Showcase</em></h2>
   <div class="videos-grid">
-
     <!-- Video 1 -->
     <div class="video-card" onclick="openLightbox(0)">
       <div class="video-thumb">
-        <canvas id="thumb-0" style="width:100%;height:100%;object-fit:cover;display:block;"></canvas>
-        <video id="vid-src-0" src="landing-page.mp4" style="display:none;" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+        <video src="landing-page.mp4" muted playsinline preload="metadata"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          onloadedmetadata="this.currentTime=0.5"></video>
         <div class="play-btn">
           <div class="play-circle">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg>
@@ -313,7 +315,9 @@
     <!-- Video 2 -->
     <div class="video-card" onclick="openLightbox(1)">
       <div class="video-thumb">
-        <div class="video-thumb-placeholder"></div>
+        <video src="website.mp4" muted playsinline preload="metadata"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          onloadedmetadata="this.currentTime=0.5"></video>
         <div class="play-btn">
           <div class="play-circle">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg>
@@ -330,7 +334,9 @@
     <!-- Video 3 -->
     <div class="video-card" onclick="openLightbox(2)">
       <div class="video-thumb">
-        <div class="video-thumb-placeholder"></div>
+        <video src="Post-design.mp4" muted playsinline preload="metadata"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          onloadedmetadata="this.currentTime=0.5"></video>
         <div class="play-btn">
           <div class="play-circle">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg>
@@ -347,7 +353,9 @@
     <!-- Video 4 -->
     <div class="video-card" onclick="openLightbox(3)">
       <div class="video-thumb">
-        <div class="video-thumb-placeholder"></div>
+        <video src="LQDCNVS.mp4" muted playsinline preload="metadata"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          onloadedmetadata="this.currentTime=0.5"></video>
         <div class="play-btn">
           <div class="play-circle">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg>
@@ -360,7 +368,6 @@
         <div class="video-desc">A promotional video created using AI video generation tools for a client's product launch.</div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -574,43 +581,6 @@
     setTimeout(() => { m.style.display = "none"; document.body.style.overflow = ""; }, 250);
   }
   document.getElementById("modal-backdrop").addEventListener("click", closeModal);
-
-  // ── AUTO THUMBNAILS ──
-  const thumbFiles = ["landing-page.mp4","website.mp4","Post-design.mp4","LQDCNVS.mp4"];
-  thumbFiles.forEach((file, i) => {
-    const vid = document.getElementById("vid-src-" + i);
-    const canvas = document.getElementById("thumb-" + i);
-    if (!vid || !canvas) return;
-    vid.addEventListener("loadeddata", () => {
-      vid.currentTime = 0.5;
-    });
-    vid.addEventListener("seeked", () => {
-      const ctx = canvas.getContext("2d");
-      canvas.width = vid.videoWidth || 640;
-      canvas.height = vid.videoHeight || 360;
-      ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
-    });
-    vid.addEventListener("error", () => {
-      // If video can't load, show a stylish pink gradient placeholder
-      const ctx = canvas.getContext("2d");
-      canvas.width = 640; canvas.height = 360;
-      const grad = ctx.createLinearGradient(0, 0, 640, 360);
-      grad.addColorStop(0, "#2a1521");
-      grad.addColorStop(1, "#3d1a2e");
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 640, 360);
-      // Draw play icon
-      ctx.fillStyle = "rgba(247,37,133,0.3)";
-      ctx.beginPath();
-      ctx.arc(320, 180, 48, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "rgba(247,37,133,0.8)";
-      ctx.beginPath();
-      ctx.moveTo(305, 158); ctx.lineTo(305, 202); ctx.lineTo(342, 180);
-      ctx.closePath(); ctx.fill();
-    });
-    vid.load();
-  });
 
 </script>
 
