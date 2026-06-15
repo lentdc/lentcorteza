@@ -211,7 +211,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#skills">Skills</a></li>
-    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="services" class="active">Services</a></li>
     <li><a href="index.html#testimonials">Testimonials</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
@@ -389,7 +389,7 @@
   <a href="index.html" class="btn-outline">Back to Home</a>
 </div>
 
-<div class="footer-note">© 2025 Lent Doreez B. Corteza · All Rights Reserved</div>
+<div class="footer-note">© 2026 Lent Doreez B. Corteza · All Rights Reserved</div>
 
 
 <!-- CONTACT MODAL -->
