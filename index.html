@@ -29,7 +29,7 @@
     .nav-links a:hover { color:var(--pink); }
 
     /* HERO */
-    .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:3rem; padding:8rem 6% 5rem; position:relative; overflow:hidden; }
+    .hero { min-height:100vh; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:8rem 8% 5rem; position:relative; overflow:hidden; }
     .hero::before { content:''; position:absolute; top:-10%; right:-5%; width:55vw; height:55vw; background:radial-gradient(circle,rgba(247,37,133,0.15) 0%,transparent 70%); pointer-events:none; }
     .hero::after  { content:''; position:absolute; bottom:0; left:-5%; width:35vw; height:35vw; background:radial-gradient(circle,rgba(255,143,171,0.07) 0%,transparent 70%); pointer-events:none; }
     .hero-text { position:relative; z-index:2; }
@@ -41,7 +41,7 @@
     .role-static { opacity:0.5; }
     #typewriter { color:var(--rose); border-right:2px solid var(--pink); animation:blink 0.7s step-end infinite; padding-right:2px; }
     @keyframes blink { 50% { border-color:transparent; } }
-    .hero-tagline { font-size:1rem; color:var(--muted); max-width:500px; line-height:1.8; margin-bottom:2rem; }
+    .hero-tagline { font-size:1.05rem; color:var(--muted); max-width:640px; line-height:1.8; margin-bottom:2rem; }
     .hero-tagline strong { color:var(--blush); font-weight:500; }
     .hero-meta { display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.2rem; }
     .badge { display:inline-flex; align-items:center; gap:0.4rem; padding:0.35rem 0.85rem; background:var(--bg-card); border:1px solid rgba(247,37,133,0.22); border-radius:100px; font-family:var(--font-mono); font-size:0.72rem; color:var(--muted); letter-spacing:0.05em; }
@@ -50,31 +50,7 @@
     .btn-primary:hover { background:#d91e73; transform:translateY(-2px); }
     .btn-outline { padding:0.82rem 1.9rem; background:transparent; color:var(--rose); font-family:var(--font-body); font-size:0.9rem; font-weight:500; border:1.5px solid rgba(255,143,171,0.5); border-radius:50px; cursor:pointer; text-decoration:none; display:inline-block; transition:border-color 0.2s,color 0.2s,transform 0.15s; letter-spacing:0.03em; }
     .btn-outline:hover { border-color:var(--pink); color:var(--pink); transform:translateY(-2px); }
-    .hero-video-col { position:relative; z-index:2; display:flex; justify-content:center; align-items:center; }
-    .hero-video-frame { position:relative; width:clamp(280px,38vw,480px); }
-    /* pink glow blob behind video */
-    .hero-video-frame::before { content:''; position:absolute; inset:-20px; border-radius:40% 60% 55% 45%/45% 40% 60% 55%; background:linear-gradient(135deg,rgba(247,37,133,0.2),rgba(255,143,171,0.07)); z-index:0; animation:blobPulse 6s ease-in-out infinite alternate; }
     @keyframes blobPulse { from{border-radius:40% 60% 55% 45%/45% 40% 60% 55%;} to{border-radius:60% 40% 45% 55%/55% 60% 40% 45%;} }
-    /* decorative corner accent */
-    .hero-video-frame::after { content:''; position:absolute; bottom:-14px; right:-14px; width:65%; height:65%; border:2px solid rgba(247,37,133,0.28); border-radius:30% 70% 60% 40%/40% 30% 70% 60%; z-index:0; }
-    /* the video wrapper */
-    .hero-video-wrap { position:relative; z-index:1; width:100%; border-radius:28px; overflow:hidden; background:#1e0f19; box-shadow:0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(247,37,133,0.18); aspect-ratio:9/16; }
-    /* actual video element */
-    .hero-video-wrap video { width:100%; height:100%; object-fit:cover; display:block; border-radius:28px; }
-    /* placeholder shown until video is added */
-    .video-placeholder { width:100%; height:100%; min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; background:linear-gradient(160deg,#2a1521 0%,#3d1a2e 55%,#1e0f19 100%); padding:2rem; text-align:center; }
-    .video-placeholder .vp-icon { font-size:3rem; opacity:0.5; }
-    .video-placeholder .vp-play {
-      width:56px; height:56px; border-radius:50%;
-      background:rgba(247,37,133,0.15); border:2px solid rgba(247,37,133,0.4);
-      display:flex; align-items:center; justify-content:center;
-      margin-bottom:0.5rem;
-    }
-    .video-placeholder .vp-play svg { margin-left:3px; }
-    .video-placeholder p { font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(247,37,133,0.45); line-height:1.7; }
-    /* "Open to Work" floating chip */
-    .hero-avail-chip { position:absolute; bottom:28px; left:-18px; z-index:2; background:var(--bg-card); border:1px solid rgba(247,37,133,0.35); border-radius:100px; padding:0.45rem 1rem; display:flex; align-items:center; gap:0.5rem; font-family:var(--font-mono); font-size:0.72rem; color:var(--blush); letter-spacing:0.07em; box-shadow:0 4px 20px rgba(0,0,0,0.4); }
-    .avail-dot { width:8px; height:8px; border-radius:50%; background:#4ade80; box-shadow:0 0 8px rgba(74,222,128,0.6); animation:pulse-green 2s ease-in-out infinite; }
     @keyframes pulse-green { 0%,100%{box-shadow:0 0 6px rgba(74,222,128,0.5);}50%{box-shadow:0 0 14px rgba(74,222,128,0.9);} }
 
     /* SECTION SHARED */
@@ -153,6 +129,8 @@
     .tcard-stars { display:flex; gap:3px; }
     .star { color:var(--pink); font-size:0.85rem; }
     .tcard-quote { font-family:var(--font-display); font-style:italic; font-size:0.97rem; color:var(--blush); line-height:1.75; flex:1; }
+    .read-more-btn { align-self:flex-start; background:none; border:1px solid rgba(247,37,133,0.35); border-radius:100px; padding:0.3rem 0.9rem; font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--pink); cursor:pointer; transition:background 0.2s,color 0.2s; margin-top:0.2rem; }
+    .read-more-btn:hover { background:var(--pink); color:var(--white); }
     .tcard-person { display:flex; align-items:center; gap:0.85rem; padding-top:1rem; border-top:1px solid rgba(247,37,133,0.1); }
     .tcard-avatar { width:48px; height:48px; border-radius:50%; border:2px solid rgba(247,37,133,0.3); display:flex; align-items:center; justify-content:center; font-size:1.4rem; background:var(--bg-soft); overflow:hidden; flex-shrink:0; }
     .tcard-info { display:flex; flex-direction:column; }
@@ -173,21 +151,17 @@
     @media (max-width:1000px) { .tools-groups { grid-template-columns:repeat(2,1fr); } }
     @media (max-width:900px) {
       .hero { grid-template-columns:1fr; min-height:unset; padding:7rem 5% 4rem; gap:3rem; }
-      .hero-video-col { order:-1; }
-      .hero-video-frame { width:clamp(200px,60vw,320px); margin:0 auto; }
-      .about-grid { grid-template-columns:1fr; gap:2.5rem; }
+          .about-grid { grid-template-columns:1fr; gap:2.5rem; }
       .skills-layout { grid-template-columns:1fr; }
       .tools-card { grid-column:span 1; }
       .testimonials-grid { grid-template-columns:1fr; }
     }
     @media (max-width:600px) {
       nav { padding:1rem 4%; } .nav-links { gap:1rem; } .nav-links a { font-size:0.65rem; }
-      .hero-avail-chip { left:0; bottom:16px; font-size:0.65rem; }
-      .tools-groups { grid-template-columns:1fr; }
+        .tools-groups { grid-template-columns:1fr; }
     }
     @media (prefers-reduced-motion:reduce) {
       #typewriter { animation:none; border-right:none; }
-      .hero-video-frame::before,.avail-dot { animation:none; }
       .btn-primary:hover,.btn-outline:hover,.tcard:hover,.skill-card:hover,.tool-tag:hover { transform:none; }
     }
   </style>
@@ -227,38 +201,6 @@
     <div class="hero-ctas">
       <a href="#work" class="btn-primary">View My Work</a>
       <a href="#contact" class="btn-outline">Let's Connect</a>
-    </div>
-  </div>
-  <div class="hero-video-col">
-    <div class="hero-video-frame">
-      <div class="hero-video-wrap">
-
-        <!--
-          ╔══════════════════════════════════════════════════╗
-          ║  TO ADD YOUR VIDEO:                              ║
-          ║  1. Delete the <div class="video-placeholder">   ║
-          ║     block below.                                 ║
-          ║  2. Uncomment and update the <video> tag.        ║
-          ║  Tip: Portrait (9:16) video looks best here.     ║
-          ╚══════════════════════════════════════════════════╝
-
-        <video autoplay muted loop playsinline poster="your-thumbnail.jpg">
-          <source src="your-video.mp4" type="video/mp4">
-        </video>
-        -->
-
-        <!-- Placeholder — remove once video is added -->
-        <div class="video-placeholder">
-          <div class="vp-play">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M6 4l14 8-14 8V4z" fill="rgba(247,37,133,0.7)"/>
-            </svg>
-          </div>
-          <p>Your intro video<br>goes here<br><br>Replace this block<br>with a &lt;video&gt; tag</p>
-        </div>
-
-      </div>
-      <div class="hero-avail-chip"><div class="avail-dot"></div>Open to Work</div>
     </div>
   </div>
 </section>
@@ -588,37 +530,89 @@
   <div class="testimonials-header">
     <div class="section-label">Kind Words</div>
     <h2 class="section-heading">What <em>Clients Say</em></h2>
-    <p class="testimonials-subtitle">Building trust through consistent, quality work — here's what people I've had the pleasure of working with have to say.</p>
+    <p class="testimonials-subtitle">Real feedback from real clients — here's what people I've had the pleasure of working with have to say.</p>
   </div>
   <div class="testimonials-grid">
+
+    <!-- Testimonial 1 -->
     <div class="tcard">
       <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-      <p class="tcard-quote">"Lent completely transformed how our team operates day-to-day. She took ownership of our inbox, scheduling, lead tracking, and client follow-ups without missing a beat. Her communication is clear, her turnaround is fast, and she genuinely cares about getting results."</p>
+      <p class="tcard-quote">"She's flexible in her approach, timely in her delivery, and consistently goes the extra mile — the difference maker in choosing her every time."</p>
+      <button class="read-more-btn" onclick="openTestimonial(0)">Read Full Review</button>
+      <div class="tcard-person">
+        <div class="tcard-avatar">🤝</div>
+        <div class="tcard-info">
+          <span class="tcard-name">Tahj W.</span>
+          <span class="tcard-role">Work Colleague</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial 2 -->
+    <div class="tcard">
+      <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="tcard-quote">"Lent did an amazing job on all my new websites! She listened to all my ideas and made them look even better than I imagined."</p>
+      <button class="read-more-btn" onclick="openTestimonial(1)">Read Full Review</button>
       <div class="tcard-person">
         <div class="tcard-avatar">👨‍💼</div>
-        <div class="tcard-info"><span class="tcard-name">James R. Mitchell</span><span class="tcard-role">CEO · U.S.-Based Marketing Agency</span></div>
+        <div class="tcard-info">
+          <span class="tcard-name">Clyde Odems</span>
+          <span class="tcard-role">President · BS3 Services</span>
+        </div>
       </div>
     </div>
+
+    <!-- Testimonial 3 -->
     <div class="tcard">
       <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-      <p class="tcard-quote">"Reliable, professional, and always one step ahead. Lent handled our email campaigns and social content with so much creativity and attention to detail. She built our landing page beautifully too — she truly does it all."</p>
+      <p class="tcard-quote">"Lent consistently demonstrated professionalism, reliability, and a strong willingness to learn. She is dependable, trustworthy, and genuinely committed to the team's success."</p>
+      <button class="read-more-btn" onclick="openTestimonial(2)">Read Full Review</button>
       <div class="tcard-person">
-        <div class="tcard-avatar">👩‍💼</div>
-        <div class="tcard-info"><span class="tcard-name">Sarah L. Thompson</span><span class="tcard-role">Founder · E-Commerce Brand</span></div>
+        <div class="tcard-avatar">🏢</div>
+        <div class="tcard-info">
+          <span class="tcard-name">Zakariyyah Zabek</span>
+          <span class="tcard-role">CVO · Apexvision Tax & Accounting</span>
+        </div>
       </div>
     </div>
-    <div class="tcard">
-      <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-      <p class="tcard-quote">"Exceptional customer support skills. Our clients loved Lent. She handled every inquiry with patience, empathy, and speed. Response quality went up and complaints went down — that speaks volumes."</p>
-      <div class="tcard-person">
-        <div class="tcard-avatar">👨‍💻</div>
-        <div class="tcard-info"><span class="tcard-name">Daniel C. Reyes</span><span class="tcard-role">Operations Manager · SaaS Startup</span></div>
-      </div>
-    </div>
+
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- TESTIMONIAL READ MORE MODAL -->
+<div id="testimonial-modal" style="display:none;position:fixed;inset:0;z-index:999;align-items:center;justify-content:center;padding:1.5rem;">
+  <div id="tmodal-backdrop" style="position:absolute;inset:0;background:rgba(10,4,9,0.88);backdrop-filter:blur(10px);"></div>
+  <div style="position:relative;z-index:1;background:#1e0f19;border:1px solid rgba(247,37,133,0.25);border-radius:24px;padding:2.6rem 2.4rem 2.2rem;max-width:580px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,0.7);max-height:85vh;overflow-y:auto;">
+
+    <!-- Close -->
+    <button onclick="closeTestimonial()" style="position:absolute;top:1.1rem;right:1.2rem;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseover="this.style.color='var(--pink)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+
+    <!-- Stars -->
+    <div style="display:flex;gap:3px;margin-bottom:1.2rem;">
+      <span style="color:var(--pink);">★</span><span style="color:var(--pink);">★</span><span style="color:var(--pink);">★</span><span style="color:var(--pink);">★</span><span style="color:var(--pink);">★</span>
+    </div>
+
+    <!-- Quote mark -->
+    <div style="font-family:var(--font-display);font-size:4rem;line-height:0.8;color:rgba(247,37,133,0.2);margin-bottom:0.8rem;">"</div>
+
+    <!-- Full message -->
+    <div id="tmodal-message" style="font-family:var(--font-display);font-style:italic;font-size:0.97rem;color:var(--blush);line-height:1.85;white-space:pre-line;"></div>
+
+    <!-- Divider -->
+    <div style="height:1px;background:rgba(247,37,133,0.12);margin:1.8rem 0;"></div>
+
+    <!-- Client info -->
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div id="tmodal-avatar" style="width:52px;height:52px;border-radius:50%;border:2px solid rgba(247,37,133,0.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:var(--bg-soft);flex-shrink:0;"></div>
+      <div>
+        <div id="tmodal-name" style="font-weight:700;font-size:1rem;color:var(--white);margin-bottom:0.2rem;"></div>
+        <div id="tmodal-position" style="font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--pink);"></div>
+        <div id="tmodal-company" style="font-size:0.82rem;color:var(--muted);margin-top:0.15rem;"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 <!-- FOOTER -->
@@ -720,7 +714,68 @@
   // close on backdrop click
   document.getElementById('modal-backdrop').addEventListener('click', closeModal);
   // close on Escape key
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  // ── TESTIMONIALS ──
+  const testimonials = [
+    {
+      avatar: '🤝',
+      name: 'Tahj W.',
+      position: 'Work Colleague',
+      company: '',
+      message: `"I've had the opportunity to work with Lent on a variety of projects ranging from maintaining large datasets of customer information, generating reports, social media creative development/management, and customer expectation engagement — I have never been more satisfied with the results and what they've meant for my endeavors.
+
+Lent is very easy to work with, sets realistic expectations of outcomes, and makes herself available for discussion and troubleshooting for what seems like any time of the day. She's flexible in her approach, timely in her delivery, and consistently goes the extra mile for me which is the difference maker in choosing her EVERY TIME whenever the opportunity arises.
+
+But don't just take my word for it, book a consultation with her and watch your operations flex and become more streamlined in your first week of collaboration!"`
+    },
+    {
+      avatar: '👨‍💼',
+      name: 'Clyde Odems',
+      position: 'President of BS3 Services',
+      company: 'Partner & Contractor Specialist of DRSCC',
+      message: `"Lent did an amazing job on my all my new websites! She listened to all my ideas and made them look even better than I imagined. The process was smooth, and they were very fast to reply to questions. I highly recommend her to anyone who needs a beautiful and professional site!"`
+    },
+    {
+      avatar: '🏢',
+      name: 'Zakariyyah Zabek',
+      position: 'Chief Visionary Officer (CVO)',
+      company: 'Apexvision Tax & Accounting Solutions',
+      message: `"It is my pleasure to recommend Lent Doreez B. Corteza for administrative, executive support, and virtual assistant roles.
+
+Lent has served as an Executive Assistant supporting our operations at Apexvision Tax & Accounting Solutions and has consistently demonstrated professionalism, reliability, and a strong willingness to learn. She quickly adapted to new systems and responsibilities, helping coordinate schedules, manage communications, organize projects, conduct outreach, and support various administrative initiatives.
+
+One of Lent's greatest strengths is her ability to follow direction while maintaining a positive and professional attitude. She communicates effectively, remains organized, and takes ownership of assigned tasks to ensure they are completed accurately and on time. Whether coordinating meetings, managing follow-up communications, assisting with recruiting efforts, or supporting marketing and business development initiatives, she approaches her work with dedication and attention to detail.
+
+Lent has also shown initiative in learning new tools and technologies, including CRM systems, email marketing platforms, social media management, scheduling systems, and business communication tools. Her adaptability and commitment to continuous improvement make her a valuable asset to any organization.
+
+Beyond her technical skills, Lent is dependable, respectful, trustworthy, and genuinely committed to contributing to the success of the team she supports. She represents herself and the organizations she works with professionally and with integrity.
+
+I am confident that Lent will continue to grow into increasingly responsible roles and would be an asset to any business seeking a capable Executive Assistant, Virtual Assistant, Administrative Professional, or Operations Support Specialist.
+
+I highly recommend her and look forward to seeing her continued success."`
+    }
+  ];
+
+  function openTestimonial(index) {
+    const t = testimonials[index];
+    const m = document.getElementById('testimonial-modal');
+    document.getElementById('tmodal-message').textContent = t.message;
+    document.getElementById('tmodal-avatar').textContent = t.avatar;
+    document.getElementById('tmodal-name').textContent = t.name;
+    document.getElementById('tmodal-position').textContent = t.position;
+    document.getElementById('tmodal-company').textContent = t.company;
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => { m.style.opacity = '0'; requestAnimationFrame(() => { m.style.transition = 'opacity 0.25s'; m.style.opacity = '1'; }); });
+  }
+
+  function closeTestimonial() {
+    const m = document.getElementById('testimonial-modal');
+    m.style.opacity = '0';
+    setTimeout(() => { m.style.display = 'none'; document.body.style.overflow = ''; }, 250);
+  }
+
+  document.getElementById('tmodal-backdrop').addEventListener('click', closeTestimonial);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeTestimonial(); closeModal(); } });
 </script>
 </body>
 </html>
